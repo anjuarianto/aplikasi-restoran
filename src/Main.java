@@ -1,7 +1,10 @@
 import Panel.MainFrame;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import Process.Menu;
+import Process.Pembayaran;
 
 public class Main {
 
@@ -29,7 +32,7 @@ public class Main {
                 case 2:
                     semuaPesanan = buatPesanan();
                     semuaPesanan = bayar(semuaPesanan);
-                    printStruk(semuaPesanan);
+//                    printStruk(semuaPesanan);
 
                 case 3:
                     System.exit(0);
@@ -87,7 +90,7 @@ public class Main {
     public static void mainMenuDisplay() {
         System.out.println("------------- Main menu -------------");
         System.out.println("Silahkan pilih:");
-        System.out.println("1. Lihat Semua Menu");
+        System.out.println("1. Lihat Semua Process.Menu");
         System.out.println("2. Buat Pesanan");
         System.out.println("3. Keluar");
     }
@@ -123,7 +126,7 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         String[][] menu = new Menu().getMenus();
 
-        System.out.println("Pilih Menu: ");
+        System.out.println("Pilih Process.Menu: ");
         Integer menuPesanan = Integer.valueOf(scanner.nextLine())-1;
         System.out.println("Masukan jumlah pesanan: ");
         Integer jumlahPesanan = Integer.valueOf(scanner.nextLine());
@@ -165,9 +168,9 @@ public class Main {
 
         hargaSemuaPesanan = Pembayaran.hitungSemuaPesanan(semuaPesanan);
 
-        if(hargaSemuaPesanan > 50000) {
-            tambahGratisMinuman(semuaPesanan);
-        }
+//        if(hargaSemuaPesanan > 50000) {
+//            tambahGratisMinuman(semuaPesanan);
+//        }
 
         clearScreen();
         Pembayaran.hitungSemuaPesanan(semuaPesanan);
@@ -187,59 +190,59 @@ public class Main {
         new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
     }
 
-    public static ArrayList<Integer[]> tambahGratisMinuman(ArrayList<Integer[]> semuaPesanan) throws IOException, InterruptedException {
-        Scanner scanner = new Scanner(System.in);
-        Integer[] pesanan = new Integer[0];
 
-        Integer input;
-        System.out.println("Pilih satu gratis minuman, ketik apa saja untuk melanjutkan...");
-        scanner.nextLine();
-        displayMenu();
-        System.out.println("Pilih minuman:");
-        input = Integer.valueOf(scanner.nextLine());
-
-        if(Menu.getMenus()[input][1] == "Minuman") {
-            pesanan = new Integer[] {input-1,1,0};
-            semuaPesanan.add(pesanan);
-        } else {
-            System.out.println("Silahkan pilih menu minuman..");
-        }
-
-        return semuaPesanan;
-    }
-
-    public static void printStruk(ArrayList<Integer[]> semuaPesanan) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.print("Print struk?");
-
-        if(yesOrNo()) {
-            int numLength = 3, menuLength = 15, qtyLength = 3, hargaLength = 10;
-            float hargaTotal = 0;
-
-            System.out.println("____________________________________");
-            System.out.println("|No |Menu           |Qty|Harga     |");
-            System.out.println("____________________________________");
-            int i=1;
-            for (Integer[] pesanan : semuaPesanan ) {
-                String[] dataOrder = Menu.getMenus()[pesanan[0]];
-                System.out.print("|" + String.format("%-"+numLength+"s", i));
-                System.out.print("|" + String.format("%-"+menuLength+"s", dataOrder[0]));
-                System.out.print("|" + String.format("%-"+qtyLength+"s", pesanan[1]));
-                System.out.println("|" + String.format("%-"+hargaLength+"s", pesanan[2]) + "|");
-                hargaTotal = hargaTotal + (pesanan[2]*pesanan[1]);
-                i++;
-            }
-            System.out.println("____________________________________");
-            System.out.println("|Total                  |" + String.format("%-"+hargaLength+"s", Pembayaran.getTotalPesanan(semuaPesanan))  + "|");
-            System.out.println("|Diskon                 |" + String.format("%-"+hargaLength+"s", Pembayaran.getDiskon(semuaPesanan))  + "|");
-            System.out.println("|Pajak 10% + Pelayanan  |" + String.format("%-"+hargaLength+"s", Pembayaran.getPajakPelayanan(semuaPesanan))  + "|");
-            System.out.println("|Grand Total            |" + String.format("%-"+hargaLength+"s", Pembayaran.getGrandTotal(semuaPesanan))  + "|");
-            System.out.println("____________________________________");
-        } else {
-            System.out.println("Struk tidak di print, terima kasih");
-        }
-    }
-
+//    public static ArrayList<Integer[]> tambahGratisMinuman(ArrayList<Integer[]> semuaPesanan) throws IOException, InterruptedException {
+//        Scanner scanner = new Scanner(System.in);
+//        Integer[] pesanan = new Integer[0];
+//
+//        Integer input;
+//        System.out.println("Pilih satu gratis minuman, ketik apa saja untuk melanjutkan...");
+//        scanner.nextLine();
+//        displayMenu();
+//        System.out.println("Pilih minuman:");
+//        input = Integer.valueOf(scanner.nextLine());
+//
+//        if(Menu.getMenus()[input][1] == "Minuman") {
+//            pesanan = new Integer[] {input-1,1,0};
+//            semuaPesanan.add(pesanan);
+//        } else {
+//            System.out.println("Silahkan pilih menu minuman..");
+//        }
+//
+//        return semuaPesanan;
+//    }
+//
+//    public static void printStruk(ArrayList<Integer[]> semuaPesanan) {
+//        Scanner scanner = new Scanner(System.in);
+//
+//        System.out.print("Print struk?");
+//
+//        if(yesOrNo()) {
+//            int numLength = 3, menuLength = 15, qtyLength = 3, hargaLength = 10;
+//            float hargaTotal = 0;
+//
+//            System.out.println("____________________________________");
+//            System.out.println("|No |Process.Menu           |Qty|Harga     |");
+//            System.out.println("____________________________________");
+//            int i=1;
+//            for (Integer[] pesanan : semuaPesanan ) {
+//                String[] dataOrder = Menu.getMenus()[pesanan[0]];
+//                System.out.print("|" + String.format("%-"+numLength+"s", i));
+//                System.out.print("|" + String.format("%-"+menuLength+"s", dataOrder[0]));
+//                System.out.print("|" + String.format("%-"+qtyLength+"s", pesanan[1]));
+//                System.out.println("|" + String.format("%-"+hargaLength+"s", pesanan[2]) + "|");
+//                hargaTotal = hargaTotal + (pesanan[2]*pesanan[1]);
+//                i++;
+//            }
+//            System.out.println("____________________________________");
+//            System.out.println("|Total                  |" + String.format("%-"+hargaLength+"s", Pembayaran.getTotalPesanan(semuaPesanan))  + "|");
+//            System.out.println("|Diskon                 |" + String.format("%-"+hargaLength+"s", Pembayaran.getDiskon(semuaPesanan))  + "|");
+//            System.out.println("|Pajak 10% + Pelayanan  |" + String.format("%-"+hargaLength+"s", Pembayaran.getPajakPelayanan(semuaPesanan))  + "|");
+//            System.out.println("|Grand Total            |" + String.format("%-"+hargaLength+"s", Pembayaran.getGrandTotal(semuaPesanan))  + "|");
+//            System.out.println("____________________________________");
+//        } else {
+//            System.out.println("Struk tidak di print, terima kasih");
+//        }
+//    }
 }
 

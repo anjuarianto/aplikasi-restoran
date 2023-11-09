@@ -14,21 +14,27 @@ public class MainPanel extends JPanel {
     private JPanel contentPane;
     public MainPanel(JPanel panel) {
         contentPane = panel;
+        panel.setPreferredSize(panel.getPreferredSize());
         inputLabel.setText("Input");
         textArea.setText(setTextPanel());
-        add(mainPanel);
-
+        contentPane.add(mainPanel, "Main Panel");
         inputButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                CardLayout cardLayout = (CardLayout) contentPane.getLayout();
                 switch (inputField.getText()) {
                     case "1":
-                        CardLayout cardLayout = (CardLayout) contentPane.getLayout();
-                        cardLayout.next(contentPane);
+                        new MenuPanel(contentPane);
+                        cardLayout.show(contentPane, "Menu Panel");
+                        break;
+                    case "2":
+                        new Pemesanan(contentPane);
+                        cardLayout.show(contentPane, "Pemesanan");
                         break;
                     default:
                         JOptionPane.showMessageDialog(null, "Silahkan masukan input yang sesuai");
                 }
+                inputField.setText("");
             }
         });
     }
@@ -36,6 +42,7 @@ public class MainPanel extends JPanel {
     public String setTextPanel() {
         return "Main Menu: \n" +
                 "1. Tampilkan Menu \n" +
-                "2. Input Menu Baru";
+                "2. Pesan";
     }
+
 }

@@ -1,4 +1,5 @@
-import java.lang.reflect.Array;
+package Process;
+
 import java.util.ArrayList;
 
 public class Pembayaran {
@@ -70,12 +71,12 @@ public class Pembayaran {
         float hargaTotal = 0;
         int i = 1;
 
-        for (Integer[] pesanan : semuaPesanan ) {
-            String[] dataOrder = Menu.getMenus()[pesanan[0]];
-            System.out.println(i + ". " + dataOrder[0] + " - Jumlah: " + pesanan[1] + " - Total: " + pesanan[2]*pesanan[1]);
-            hargaTotal = hargaTotal + (pesanan[2]*pesanan[1]);
-            i++;
-        }
+//        for (Integer[] pesanan : semuaPesanan ) {
+//            String[] dataOrder = Menu.getMenus()[pesanan[0]];
+//            System.out.println(i + ". " + dataOrder[0] + " - Jumlah: " + pesanan[1] + " - Total: " + pesanan[2]*pesanan[1]);
+//            hargaTotal = hargaTotal + (pesanan[2]*pesanan[1]);
+//            i++;
+//        }
 
         System.out.println("------------------------------------------------------------");
         System.out.println("Total Pesanan : " + hargaTotal);

@@ -7,19 +7,28 @@ public class MainFrame {
     private JPanel contentPane;
     private MenuPanel menuPanel;
     private MainPanel mainPanel;
+    private InputMenu inputMenu;
+    private Pemesanan pemesanan;
+    private Pembayaran pembayaran;
+
     public MainFrame() {
         JFrame frame = new JFrame();
-        JPanel contentPane = new JPanel();
+        contentPane = new JPanel();
+        frame.getContentPane().add(contentPane);
+
         contentPane.setBorder(
                 BorderFactory.createEmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new CardLayout());
-        contentPane.setLayout(new CardLayout());
+
         mainPanel = new MainPanel(contentPane);
         menuPanel = new MenuPanel(contentPane);
-        contentPane.add(mainPanel, "Panel 1");
-        contentPane.add(menuPanel, "Panel 2");
+        inputMenu = new InputMenu(contentPane);
+        pemesanan = new Pemesanan(contentPane);
+        pembayaran = new Pembayaran(contentPane);
+
+        frame.setSize(700,500);
+        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         frame.setContentPane(contentPane);
-        frame.pack();
         frame.setLocationByPlatform(true);
         frame.setVisible(true);
     }
